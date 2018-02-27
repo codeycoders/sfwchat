@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+# Wobbly's SFWCHAT.
+# I'm no legal expert, so I'll tell this to you in a very simple manner.
+# Don't copy this stuff. Am I going to do anything about it? No.
+# Just please don't, I worked hard on this as I'm sure you're working
+# hard on reading this, because if you thought that you could just copy this
+# and I'd be fine with it you aren't only wrong, but you are also stupid.
+# Partially.
+- Current Official URL: wobbly.repl.co/sfwchat/
+- Current Status: Unreleased
+-->
+<html>
+  <head>
+    <title>index</title>
+    <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="main.css" />
+  </head>
+  <body onload="redirect()">
+    <h3>wobbly's sfwchat / codeychat</h3>
+    <p id="status">Welcome to INDEX.HTML. You shouldn't be here long. Please wait while we redirect you to your actual destination, in this case, homepage.html - which you'll find is much more friendly. In the event your somehow on this for more than a second you really need better internet... just saying... sorry not sorry? I don't know, I'm not great with talking to people.</p>
+    <script>
+      function redirect() {
+        var enabled = 0;
+        if (enabled != 1) {
+          if (window.location.href.includes("wobbly.repl.co/sfwchat")) {
+            window.location.href = "homepage.html";
+          } else {
+            document.getElementById("status").innerHTML = "It appears you are not using an official version of SFWCHAT. As a result, you will be unable to access anything on SFWCHAT to prevent the database from being damaged.<br>Feel that this is a mistake?<br>It's possible that you are using a <b>VPN</b> or <b>Proxy</b> service which is not allowing this file to load properly. Anyway, I do hope you enjoy your stay on the one and only index.html. <b>How. Incredibly. Fun.</b>";
+          }
+        } else {
+          document.getElementById("status").innerHTML = "Hey you! SFWCHAT is currently undergoing maintence. We don't know when it'll be up again, but for now you can sit here and stare at this error screen.";
+        }
+      }
+    </script>
+  </body>
+</html>

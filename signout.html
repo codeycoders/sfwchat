@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+# Wobbly's SFWCHAT.
+# I'm no legal expert, so I'll tell this to you in a very simple manner.
+# Don't copy this stuff. Am I going to do anything about it? No.
+# Just please don't, I worked hard on this as I'm sure you're working
+# hard on reading this, because if you thought that you could just copy this
+# and I'd be fine with it you aren't only wrong, but you are also stupid.
+# Partially.
+- Current Official URL: wobbly.repl.co/sfwchat/
+- Current Status: Unreleased
+-->
+<html>
+  <head>
+    <title>signout</title>
+    <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="main.css" />
+  </head>
+  <body onload="signOut()">
+    <header id="header">
+      <a class="logo" href="homepage.html">sfwchat</a>
+    </header>
+    <div id="heading" >
+			<h1>sfwchat</h1>
+		</div>
+		<section id="main" class="wrapping">
+		  <div class="inner">
+		    <div class="content">
+		      <div class="row">
+		        <div>
+		          <h3>wobbly's sfwchat / codeychat</h3>
+		          <p>Signing you out. If you see this page for more than a few seconds, something's gone
+		             very horribly wrong. So yeah? Enjoy? I don't know.</p>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</section>
+	<script src="firebase.js"></script>
+	<script>
+	  var config={apiKey:"AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",authDomain:"codeychat-20d66.firebaseapp.com",databaseURL:"https://codeychat-20d66.firebaseio.com",projectId:"codeychat-20d66",storageBucket:"codeychat-20d66.appspot.com",messagingSenderId:"531033258195"};firebase.initializeApp(config);
+	  function signOut() {
+	    firebase.auth().signOut().then(function() {
+	      window.location.href = "homepage.html";
+	    }, function(error) {
+	      alert("Some error occured.");
+	    });
+	  }
+	</script>
+  </body>
+</html>
