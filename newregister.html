@@ -48,7 +48,7 @@
                                     <input type="password" id="pin" placeholder="password"> <br>
                                     <input type="password" id="pen" placeholder="confirm"> <br>
                                 </ul>
-                                <form onsubmit="uuh()">
+                                <form onsubmit="loginPage()">
                                     <script src="https://authedmine.com/lib/captcha.min.js" async></script>
                                     <script>
                                         function myCaptchaCallback(token) {handleSignUp2();}
@@ -73,6 +73,9 @@
         function goBackHome() {
             window.location.href = "homepage.html";
         }
+		function loginPage() {
+			window.location.href = "login.html";
+		}
     </script>
     <script src="firebase.js"></script>
     <!--
