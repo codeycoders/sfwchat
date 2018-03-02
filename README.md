@@ -1,6 +1,0 @@
-# sfwchat
-hi. so... umm... here's my chat web application?
-I'm some random super secret guy who goes by the secretive name of wobbly
-and... ehh... I like good memes and I can not lie...
-if you ever need me contact me at wobblyyyy@gmail.com
-I probably won't ever respond... but... irrelevant...

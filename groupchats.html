@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>group chats</title>
+    <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header id="header">
+      <a class="logo" href="homepage.html">sfwchat</a>
+      <nav>
+					<a href="privacy.html">Privacy</a>
+					<a href="about.html">About</a>
+					<a href="contact.html">Contact</a>
+					<a href="homepage.html">Home</a>
+					<a href="signout.html">Sign Out</a>
+				</nav>
+    </header>
+    <div id="heading" >
+			<h1>sfwchat</h1>
+		</div>
+		<section id="main" class="wrapping">
+		  <div class="inner">
+		    <div class="content">
+		      <div class="row">
+		        <div>
+		          <h3>wobbly's sfwchat / codeychat</h3>
+		          <p>
+		            Welcome to the new, <b>experimental</b> homepage of
+		            sfwchat / codeychat! Here are a few things you should know
+		            about the new layout.
+		          </p>
+		           <div class="row">
+								<div class="col-6 col-12-small">
+								  <ul>
+								    <li><b>Enter can now be used!</b> Previously you had to press "submit plox" in order to submit your messages. With the new, updated version of the site the <b>enter</b> key works reliably!</li>
+								    <li><b>Still the same!</b> The only real difference is cosmetic - it should look a lot more professional now.</li>
+								    <li><b>You can revert to the old layout!</b> Don't like the new one? Just press "old layout" up in the top.</li>
+								  </ul>
+								  <input type="text" id="name" placeholder="group name"> <br>
+								  <input type="password" id="pass" placeholder="password"> <br>
+								  <ul class="actions">
+										<li><a onclick="create()" class="button primary">Create</a></li>
+										<li><a onclick="join()" class="button">Join</a></li>
+										<li><a onclick="goBack()" class="button">Go Back</a></li>
+									</ul>
+								</div>
+								<p>
+								  group chats! really experimental and stuff and cool and stuff and good and
+								  stuff and if you dont enjoy it and stuff otherwise and stuff and bad and
+								  stuff and whatever and stuff but mostly and stuff.
+								</p>
+							</div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</section>
+	<script src="firebase.js"></script>
+	<script>
+	  var config={apiKey:"AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",authDomain:"codeychat-20d66.firebaseapp.com",databaseURL:"https://codeychat-20d66.firebaseio.com",projectId:"codeychat-20d66",storageBucket:"codeychat-20d66.appspot.com",messagingSenderId:"531033258195"};firebase.initializeApp(config);
+	  function create() {
+	    var abc = document.getElementById("name").value;
+	    var bcd = document.getElementById("pass").value;
+      let referencePoint2 = firebase.database().ref('/chat/groups/');
+      referencePoint2.once('value', function(snapshot) {
+        if (snapshot.hasChild(abc)) {
+          alert("Group already exists!");
+        } else {
+          createGroup(abc, bcd);
+        }
+      });
+	    createGroup(abc, bcd);
+	  }
+	  function join() {
+	    var abc = document.getElementById("name").value;
+	    var bcd = document.getElementById("pass").value;
+	    let referencePoint3 = firebase.database().ref('/chat/groups/' + abc + '/password');
+	    referencePoint3.once('value', (snapshot) => {
+	      if (bcd == snapshot.val()) {
+	        alert("right password!");
+	      } else {
+	        alert("wrong password!");
+	      }
+	    });
+	  }
+	  function createGroup(name, password) {
+	    let referencePoint = firebase.database().ref('/chat/groups/' + name + '/name');
+	    let passwordPoint = firebase.database().ref('/chat/groups/' + name + '/password');
+	    referencePoint.set(name);
+	    passwordPoint.set(password);
+	  }
+function writeUserData(msg, namee, ide) {
+  var datetimeNow = new Date();
+  msg = datetimeNow.getHours().toString() + ":" + datetimeNow.getMinutes().toString() + ":" + datetimeNow.getSeconds().toString() + msg;
+  firebase.database().ref('chat/message').set({
+    msg
+  });
+  let hsRs = firebase.database().ref('/chat/publicDump/count');
+  hsRs.once('value', (snapshot) => {
+    var n1 = snapshot.val();
+    n1++;
+    firebase.database().ref('/chat/publicDump/dumpedMessages/message' + n1).set(msg);
+  });
+}
+	</script>
+  </body>
+</html>

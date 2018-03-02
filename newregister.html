@@ -22,6 +22,13 @@
   <body class="is-preload">
     <header id="header">
       <a class="logo" href="homepage.html">sfwchat</a>
+      <nav>
+					<a href="privacy.html">Privacy</a>
+					<a href="about.html">About</a>
+					<a href="contact.html">Contact</a>
+					<a href="homepage.html">Home</a>
+					<a href="signout.html">Sign Out</a>
+				</nav>
     </header>
     <div id="heading" >
 			<h1>sfwchat</h1>
@@ -31,19 +38,8 @@
 		    <div class="content">
 		      <div class="row">
 		        <div>
-		          <h3>wobbly's sfwchat / codeychat</h3>
-		          <p>
-		            Welcome to the new, <b>experimental</b> homepage of
-		            sfwchat / codeychat! Here are a few things you should know
-		            about the new layout.
-		          </p>
 		           <div class="row">
 								<div class="col-6 col-12-small">
-								  <ul>
-								    <li><b>Enter can now be used!</b> Previously you had to press "submit plox" in order to submit your messages. With the new, updated version of the site the <b>enter</b> key works reliably!</li>
-								    <li><b>Still the same!</b> The only real difference is cosmetic - it should look a lot more professional now.</li>
-								    <li><b>You can revert to the old layout!</b> Don't like the new one? Just press "old layout" up in the top.</li>
-								  </ul>
 								  <ul>
 								    <input type="text" id="email" placeholder="email">         <br>
                     <input type="text" id="username" placeholder="username">   <br>
@@ -77,6 +73,77 @@
 	  
 	</script>
 	-->
-	<script>var config={apiKey:"AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",authDomain:"codeychat-20d66.firebaseapp.com",databaseURL:"https://codeychat-20d66.firebaseio.com",projectId:"codeychat-20d66",storageBucket:"codeychat-20d66.appspot.com",messagingSenderId:"531033258195"};firebase.initializeApp(config);var database=firebase.database();function goBack(){window.location.href="index.html"}function handleSignUp(){var g=document.getElementById("email").value.toLowerCase(),h=document.getElementById("username").value.toLowerCase(),i=document.getElementById("pin").value;let j=firebase.database().ref("/users/names/");j.once("value",function(k){k.hasChild(h)?alert("user already exists"):document.getElementById("pin").value==document.getElementById("pen").value?g.includes("@")&&g.includes(".")?firebase.auth().createUserWithEmailAndPassword(g,i).catch(function(l){var m=l.code,n=l.message;"auth/weak-password"==m?alert("The password is too weak."):null==l,console.log(l)}):alert("good job you failed"):alert("you messed something up")})}function handleSignUp2(){handleSignUp(),handleSignUp(),handleSignUp(),handleSignUp(),handleSignUp()}function set(){var g=document.getElementById("email").value.toLowerCase(),h=document.getElementById("username").value.toLowerCase(),i=document.getElementById("pin").value;let j=firebase.database().ref("users/"+firebase.auth().currentUser.uid),k=firebase.database().ref("users/c/usernameToEmail/"+h),l=firebase.database().ref("users/c/emailToUsername/"+g.replace(".",",")),m=firebase.database().ref("users/c/emailToUid/"+g.replace(".",",")),n=firebase.database().ref("users/c/uidToEmail/"+firebase.auth().currentUser.uid),o=firebase.database().ref("users/names/"+h);j.set({username:h,uid:firebase.auth().currentUser.uid,email:g}),k.set({email:g.replace(".",",")}),l.set({username:h}),m.set({uid:firebase.auth().currentUser.uid}),n.set({email:g.replace(".",",")}),o.set({username:h,balance:10}),setTimeout(function(){ window.location.href="newlayout.html" }, 3000);}firebase.auth().onAuthStateChanged(function(g){var h=document.getElementById("email").value.toLowerCase(),i=document.getElementById("username").value.toLowerCase(),j=document.getElementById("pin").value;g&&set()});</script>
+	<script>
+var config = {
+    apiKey: "AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",
+    authDomain: "codeychat-20d66.firebaseapp.com",
+    databaseURL: "https://codeychat-20d66.firebaseio.com",
+    projectId: "codeychat-20d66",
+    storageBucket: "codeychat-20d66.appspot.com",
+    messagingSenderId: "531033258195"
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+
+function goBack() {
+    window.location.href = "index.html"
+}
+
+function handleSignUp() {
+    var g = document.getElementById("email").value.toLowerCase(),
+        h = document.getElementById("username").value.toLowerCase(),
+        i = document.getElementById("pin").value;
+    let j = firebase.database().ref("/users/names/");
+    j.once("value", function(k) {
+        k.hasChild(h) ? alert("user already exists") : document.getElementById("pin").value == document.getElementById("pen").value ? g.includes("@") && g.includes(".") ? firebase.auth().createUserWithEmailAndPassword(g, i).catch(function(l) {
+            var m = l.code,
+                n = l.message;
+            "auth/weak-password" == m ? alert("The password is too weak.") : null == l, console.log(l)
+        }) : alert("good job you failed") : alert("you messed something up")
+    })
+}
+
+function handleSignUp2() {
+    handleSignUp(), handleSignUp(), handleSignUp(), handleSignUp(), handleSignUp()
+}
+
+function set() {
+    var g = document.getElementById("email").value.toLowerCase(),
+        h = document.getElementById("username").value.toLowerCase(),
+        i = document.getElementById("pin").value;
+    let j = firebase.database().ref("users/" + firebase.auth().currentUser.uid),
+        k = firebase.database().ref("users/c/usernameToEmail/" + h),
+        l = firebase.database().ref("users/c/emailToUsername/" + g.replace(".", ",")),
+        m = firebase.database().ref("users/c/emailToUid/" + g.replace(".", ",")),
+        n = firebase.database().ref("users/c/uidToEmail/" + firebase.auth().currentUser.uid),
+        o = firebase.database().ref("users/names/" + h);
+        p = firebase.database().ref("tokens/users/" + firebase.auth().currentUser.uid);
+    j.set({
+        username: h,
+        uid: firebase.auth().currentUser.uid,
+        email: g
+    }), k.set({
+        email: g.replace(".", ",")
+    }), l.set({
+        username: h
+    }), m.set({
+        uid: firebase.auth().currentUser.uid
+    }), n.set({
+        email: g.replace(".", ",")
+    }), o.set({
+        username: h,
+        balance: 10
+    }), p.set(0),
+      setTimeout(function() {
+        window.location.href = "newlayout.html"
+    }, 3000);
+}
+firebase.auth().onAuthStateChanged(function(g) {
+    var h = document.getElementById("email").value.toLowerCase(),
+        i = document.getElementById("username").value.toLowerCase(),
+        j = document.getElementById("pin").value;
+    g && set()
+});
+	</script>
 	</body>
 </html>

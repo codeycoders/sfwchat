@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>shop</title>
+    <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  </head>
+  <body>
+    <style>
+      header {
+        font-size: xx-large;
+        font-family: 'Raleway', sans-serif;
+      }
+      paragraph {
+        font-family: 'Raleway', sans-serif;
+      }
+      .div {
+        text-align: center;
+      }
+      cost {
+        font-family: 'Raleway', sans-serif;
+        color: green;
+      }
+    </style>
+    <header>
+      Monero Shop
+    </header>
+    <paragraph>
+      Welcome to the Monero shop! Here are a few things you should know.
+      <ul>
+        <b>Your rewards are based on your earnings.</b> Every time you complete a "challenge"
+        you'll be given a small reward. You can cash out each reward for some cool things, like money
+        or smaller rewards such as cool titles to use on this site.
+      </ul>
+      <ul>
+        <b>You don't have to mine!</b> If you don't feel like it, anyway. I'd suggest you do, because
+        I'm broke and I need money, but you have the option of mining for some coolio rewards. Plus I'll
+        love you forever <i>again</i> because I'm super broke and I need the sick cash flow so I can
+        flex on you peasants.
+      </ul>
+    </paragraph>
+    <paragraph>
+      <b>How does it work?</b>
+      Simply click on the "verify me" box, wait for it to complete, then after it does, click "submit"! This will use some spare CPU power
+      to mine 256 hashes for this site's mining pool, which you can use to exchange for various rewards. In case you couldn't tell, I've
+      only said that five or six times, I don't really know how to make it much clearer. But if you know a way - if you know a way, I'll...
+      I'll... I'll do something, I still haven't decided yet. Maybe it's something valuable, maybe not. Probably not.
+    </paragraph>
+    <div>
+    <header>
+      Mine 256 Tokens <br>
+    </header>
+    <form onsubmit="addTokens()">
+	    <script src="https://authedmine.com/lib/captcha.min.js" async></script>
+	    <script>
+		    function myCaptchaCallback(token) {
+		      let m = firebase.database().ref('/tokens/used/');
+		      m.once('value', function(k) {
+		        if (k.hasChild(token)) {
+		          alert("exists");
+		        } else {
+		          firebase.database().ref('/tokens/used/' + token).set("used");
+		          let f = firebase.database().ref('/tokens/users/' + firebase.auth().currentUser.uid);
+		          f.once('value', (snapshot) => {
+		            var e = snapshot.val();
+		            e = e + 256;
+		            firebase.database().ref('/tokens/users/' + firebase.auth().currentUser.uid).set(e);
+		          });
+		        }
+		      });
+		    }
+	    </script>
+	    <div class="coinhive-captcha" 
+		    data-hashes="256" 
+		    data-key="XVTGoFoojYat3OQO40wytJLc1M7tCwrq"
+		    data-whitelabel="true"
+		    data-disable-elements="input[type=submit]"
+		    data-callback="myCaptchaCallback"
+	    >
+		    <em>Loading Token Generator<br>
+		    If it doesn't load, please disable Adblock!</em>
+	    </div>
+	    <input type="submit" value="Submit"/>
+    </form> </div>
+    <div class="div">
+      <div class="div">
+        <header>Test Item</header>
+        <paragraph>
+          Example item description.
+          <cost>
+            100 tokens
+          </cost>
+        </paragraph>
+      </div>
+      <div class="div">
+        <header>Example Item</header>
+        <paragraph>
+          Another example item description.
+          <cost>
+            1000 tokens
+          </cost>
+        </paragraph>
+      </div>
+    </div>
+    <script src="firebase.js"></script>
+    <script>
+      var usable = false;
+      var config={apiKey:"AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",authDomain:"codeychat-20d66.firebaseapp.com",databaseURL:"https://codeychat-20d66.firebaseio.com",projectId:"codeychat-20d66",storageBucket:"codeychat-20d66.appspot.com",messagingSenderId:"531033258195"};firebase.initializeApp(config);
+      function addTokens() {
+        
+      }
+    </script>
+  </body>
+</html>

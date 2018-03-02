@@ -22,6 +22,13 @@
   <body class="is-preload">
     <header id="header">
       <a class="logo" href="homepage.html">sfwchat</a>
+      <nav>
+					<a href="privacy.html">Privacy</a>
+					<a href="about.html">About</a>
+					<a href="contact.html">Contact</a>
+					<a href="homepage.html">Home</a>
+					<a href="signout.html">Sign Out</a>
+				</nav>
     </header>
     <div id="heading" >
 			<h1>sfwchat</h1>
@@ -31,25 +38,14 @@
 		    <div class="content">
 		      <div class="row">
 		        <div>
-		          <h3>wobbly's sfwchat / codeychat</h3>
-		          <p>
-		            Welcome to the new, <b>experimental</b> homepage of
-		            sfwchat / codeychat! Here are a few things you should know
-		            about the new layout.
-		          </p>
 		           <div class="row">
 								<div class="col-6 col-12-small">
-								  <ul>
-								    <li><b>Enter can now be used!</b> Previously you had to press "submit plox" in order to submit your messages. With the new, updated version of the site the <b>enter</b> key works reliably!</li>
-								    <li><b>Still the same!</b> The only real difference is cosmetic - it should look a lot more professional now.</li>
-								    <li><b>You can revert to the old layout!</b> Don't like the new one? Just press "old layout" up in the top.</li>
-								  </ul>
 								  <ul>
                     <input type="text" id="userID" placeholder="username / email">   <br>
                     <input type="password" id="pin" placeholder="password"> <br>
 								  </ul>
 								  <ul class="actions">
-										<li><a onclick="uuh()" class="button primary">Submit</a></li>
+										<li><a onclick="check()" class="button primary">Submit</a></li>
 										<li><a onclick="goBackHome()" class="button">Go Back</a></li>
 									</ul>
 								</div>
@@ -69,6 +65,13 @@
 	  }
 	</script>
 	<script src="firebase.js"></script>
-	<script>var config={apiKey:"AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",authDomain:"codeychat-20d66.firebaseapp.com",databaseURL:"https://codeychat-20d66.firebaseio.com",projectId:"codeychat-20d66",storageBucket:"codeychat-20d66.appspot.com",messagingSenderId:"531033258195"};firebase.initializeApp(config);var database=firebase.database(),ref=firebase.database().ref();function logWithEmail(){console.log("Email started"),firebase.auth().signInWithEmailAndPassword(document.getElementById("userID").value,document.getElementById("pin").value).catch(function(b){var c=b.code,d=b.message});let a=firebase.database().ref("/users/c/emailToUsername/"+document.getElementById("userID").value.replace(".",",")+"/username");a.once("value",b=>{thingy=b.val(),uuid=thingy})}function logWithUsername(){console.log("Username started");let a=firebase.database().ref("/users/c/usernameToEmail/"+document.getElementById("userID").value.toLowerCase()+"/email");a.once("value",b=>{thingy=b.val(),document.getElementById("userID").value=thingy.replace(",",".")}),logWithEmail()}function uuh(){uhh(),uhh()}function uhh(){document.getElementById("userID").value.includes("@")?logWithEmail():logWithUsername()}firebase.auth().onAuthStateChanged(function(a){a&&(window.location.href="newlayout.html")});</script>
+	<script>
+	function check() {
+	  if (document.getElementById("userID").value == "wobblyyyy@gmail.com" || document.getElementById("userID").value == "tejasmehta2003@gmail.com") {
+	    uuh();
+	  } else {
+	    alert("ur in beta kid gtfo");
+	  }
+	} var config={apiKey:"AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",authDomain:"codeychat-20d66.firebaseapp.com",databaseURL:"https://codeychat-20d66.firebaseio.com",projectId:"codeychat-20d66",storageBucket:"codeychat-20d66.appspot.com",messagingSenderId:"531033258195"};firebase.initializeApp(config);var database=firebase.database(),ref=firebase.database().ref();function logWithEmail(){console.log("Email started"),firebase.auth().signInWithEmailAndPassword(document.getElementById("userID").value,document.getElementById("pin").value).catch(function(b){var c=b.code,d=b.message});let a=firebase.database().ref("/users/c/emailToUsername/"+document.getElementById("userID").value.replace(".",",")+"/username");a.once("value",b=>{thingy=b.val(),uuid=thingy})}function logWithUsername(){console.log("Username started");let a=firebase.database().ref("/users/c/usernameToEmail/"+document.getElementById("userID").value.toLowerCase()+"/email");a.once("value",b=>{thingy=b.val(),document.getElementById("userID").value=thingy.replace(",",".")}),logWithEmail()}function uuh(){uhh(),uhh()}function uhh(){document.getElementById("userID").value.includes("@")?logWithEmail():logWithUsername()}firebase.auth().onAuthStateChanged(function(a){a&&(window.location.href="newlayout.html")});</script>
 	</body>
 </html>
