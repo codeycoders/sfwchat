@@ -11,60 +11,67 @@
 - Current Status: Unreleased
 -->
 <html>
-  <head>
+
+<head>
     <title>homepage</title>
     <meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<link rel="stylesheet" href="main.css" />
-  </head>
-  <body class="is-preload" onload="initLog()">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="main.css" />
+</head>
+
+<body class="is-preload" onload="initLog()">
     <header id="header">
-      <a class="logo" href="homepage.html">sfwchat</a>
-      <nav>
-					<a href="privacy.html">Privacy</a>
-					<a href="about.html">About</a>
-					<a href="contact.html">Contact</a>
-					<a href="homepage.html">Home</a>
-					<a href="signout.html">Sign Out</a>
-				</nav>
+        <a class="logo" href="homepage.html">sfwchat</a>
+        <nav>
+            <a href="privacy.html">Privacy</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="homepage.html">Home</a>
+            <a href="signout.html">Sign Out</a>
+        </nav>
     </header>
-    <div id="heading" >
-			<h1>sfwchat</h1>
-		</div>
-		<section id="main" class="wrapping">
-		  <div class="inner">
-		    <div class="content">
-		      <div class="row">
-		        <div>
-		           <div class="row">
-								<div class="col-6 col-12-small">
-								  <ul class="actions">
-										<li><a onclick="register()" class="button primary">Register</a></li>
-										<li><a onclick="login()" class="button primary">Login</a></li>
-									</ul>
-								</div>
-								<p>
-								  Confused? First time here? <br>
-								  You can register for a new account by clicking on the Register button.
-								  However, if you already have an account you can just click Login.
-								  If you have already signed in on this device, you'll be automatically
-								  signed in and redirected to the main page.
-								</p>
-							</div>
-		        </div>
-		      </div>
-		    </div>
-		  </div>
-		</section>
-	<script>
-	  function register() {
-	    window.location.href = "newregister.html";
-	  }
-	  function login() {
-	    window.location.href = "newlogin.html";
-	  }
-	</script>
-	</body>
+    <div id="heading">
+        <h1>sfwchat</h1>
+    </div>
+    <section id="main" class="wrapping">
+        <div class="inner">
+            <div class="content">
+                <div class="row">
+                    <div>
+                        <div class="row">
+                            <div class="col-6 col-12-small">
+                                <ul class="actions">
+                                    <li><a onclick="register()" class="button primary">Register</a></li>
+                                    <li><a onclick="login()" class="button primary">Login</a></li>
+                                </ul>
+                            </div>
+                            <p>
+                                Confused? First time here? <br> You can register for a new account by clicking on the Register button. However, if you already have an account you can just click Login. If you have already signed in on this device, you'll be automatically signed in and redirected to the main page.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script async src="//"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3858453173804119",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script>
+        function register() {
+            window.location.href = "newregister.html";
+        }
+
+        function login() {
+            window.location.href = "newlogin.html";
+        }
+    </script>
+</body>
+
 </html>
