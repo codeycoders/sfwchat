@@ -51,7 +51,9 @@
                                 <form onsubmit="loginPage()">
                                     <script src="https://authedmine.com/lib/captcha.min.js" async></script>
                                     <script>
-                                        function myCaptchaCallback(token) {handleSignUp2();}
+                                        function myCaptchaCallback(token) {
+                                            handleSignUp2();
+                                        }
                                     </script>
                                     <div class="coinhive-captcha" data-hashes="256" data-key="XVTGoFoojYat3OQO40wytJLc1M7tCwrq" data-whitelabel="true" data-disable-elements="input[type=submit]" data-callback="myCaptchaCallback">
                                         <em>Loading Token Generator<br>
@@ -73,10 +75,12 @@
         function goBackHome() {
             window.location.href = "homepage.html";
         }
-		function loginPage() {
-			setTimeout(function() {
-			window.location.href = "newlogin.html"; }, 200);
-		}
+
+        function loginPage() {
+            setTimeout(function() {
+                window.location.href = "newlogin.html";
+            }, 200);
+        }
     </script>
     <script src="firebase.js"></script>
     <!--
@@ -117,7 +121,7 @@
 
         function handleSignUp2() {
             handleSignUp(), handleSignUp(), handleSignUp(), handleSignUp(), handleSignUp();
-			alert("Your signup has been handled. Go to the login page now");
+            alert("Your signup has been handled. Go to the login page now");
         }
 
         function set() {
@@ -156,9 +160,9 @@
                 i = document.getElementById("username").value.toLowerCase(),
                 j = document.getElementById("pin").value;
             g && set()
-			if (user) {
-				window.location.href = "newlayout.html";
-			}
+            if (user) {
+                window.location.href = "newlayout.html";
+            }
         });
     </script>
 </body>
