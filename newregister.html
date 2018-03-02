@@ -11,139 +11,141 @@
 - Current Status: Unreleased
 -->
 <html>
-  <head>
+
+<head>
     <title>register</title>
     <meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<link rel="stylesheet" href="main.css" />
-  </head>
-  <body class="is-preload">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="main.css" />
+</head>
+
+<body class="is-preload">
     <header id="header">
-      <a class="logo" href="homepage.html">sfwchat</a>
-      <nav>
-					<a href="privacy.html">Privacy</a>
-					<a href="about.html">About</a>
-					<a href="contact.html">Contact</a>
-					<a href="homepage.html">Home</a>
-					<a href="signout.html">Sign Out</a>
-				</nav>
+        <a class="logo" href="homepage.html">sfwchat</a>
+        <nav>
+            <a href="privacy.html">Privacy</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="homepage.html">Home</a>
+            <a href="signout.html">Sign Out</a>
+        </nav>
     </header>
-    <div id="heading" >
-			<h1>sfwchat</h1>
-		</div>
-		<section id="main" class="wrapping">
-		  <div class="inner">
-		    <div class="content">
-		      <div class="row">
-		        <div>
-		           <div class="row">
-								<div class="col-6 col-12-small">
-								  <ul>
-								    <input type="text" id="email" placeholder="email">         <br>
-                    <input type="text" id="username" placeholder="username">   <br>
-                    <input type="password" id="pin" placeholder="password"> <br>
-                    <input type="password" id="pen" placeholder="confirm"> <br>
-								  </ul>
-								  <ul class="actions">
-										<li><a onclick="handleSignUp2()" class="button primary">Submit</a></li>
-										<li><a onclick="goBackHome()" class="button">Go Back</a></li>
-									</ul>
-								</div>
-								<p>
-								  Welcome to sfwchat / codeychat 's register page. It's pretty easy,
-								  or so I hope.
-								</p>
-							</div>
-		        </div>
-		      </div>
-		    </div>
-		  </div>
-		</section>
-	<script>
-	  function goBackHome() {
-	    window.location.href = "homepage.html";
-	  }
-	</script>
-	<script src="firebase.js"></script>
-	<!--
+    <div id="heading">
+        <h1>sfwchat</h1>
+    </div>
+    <section id="main" class="wrapping">
+        <div class="inner">
+            <div class="content">
+                <div class="row">
+                    <div>
+                        <div class="row">
+                            <div class="col-6 col-12-small">
+                                <ul>
+                                    <input type="text" id="email" placeholder="email"> <br>
+                                    <input type="text" id="username" placeholder="username"> <br>
+                                    <input type="password" id="pin" placeholder="password"> <br>
+                                    <input type="password" id="pen" placeholder="confirm"> <br>
+                                </ul>
+                                <ul class="actions">
+                                    <li><a onclick="handleSignUp2()" class="button primary">Submit</a></li>
+                                    <li><a onclick="goBackHome()" class="button">Go Back</a></li>
+                                </ul>
+                            </div>
+                            <p>
+                                Welcome to sfwchat / codeychat 's register page. It's pretty easy, or so I hope.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function goBackHome() {
+            window.location.href = "homepage.html";
+        }
+    </script>
+    <script src="firebase.js"></script>
+    <!--
 	<script>
 	  var config={apiKey:"AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",authDomain:"codeychat-20d66.firebaseapp.com",databaseURL:"https://codeychat-20d66.firebaseio.com",projectId:"codeychat-20d66",storageBucket:"codeychat-20d66.appspot.com",messagingSenderId:"531033258195"};firebase.initializeApp(config);
 	  
 	</script>
 	-->
-	<script>
-var config = {
-    apiKey: "AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",
-    authDomain: "codeychat-20d66.firebaseapp.com",
-    databaseURL: "https://codeychat-20d66.firebaseio.com",
-    projectId: "codeychat-20d66",
-    storageBucket: "codeychat-20d66.appspot.com",
-    messagingSenderId: "531033258195"
-};
-firebase.initializeApp(config);
-var database = firebase.database();
+    <script>
+        var config = {
+            apiKey: "AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",
+            authDomain: "codeychat-20d66.firebaseapp.com",
+            databaseURL: "https://codeychat-20d66.firebaseio.com",
+            projectId: "codeychat-20d66",
+            storageBucket: "codeychat-20d66.appspot.com",
+            messagingSenderId: "531033258195"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
 
-function goBack() {
-    window.location.href = "index.html"
-}
+        function goBack() {
+            window.location.href = "index.html"
+        }
 
-function handleSignUp() {
-    var g = document.getElementById("email").value.toLowerCase(),
-        h = document.getElementById("username").value.toLowerCase(),
-        i = document.getElementById("pin").value;
-    let j = firebase.database().ref("/users/names/");
-    j.once("value", function(k) {
-        k.hasChild(h) ? alert("user already exists") : document.getElementById("pin").value == document.getElementById("pen").value ? g.includes("@") && g.includes(".") ? firebase.auth().createUserWithEmailAndPassword(g, i).catch(function(l) {
-            var m = l.code,
-                n = l.message;
-            "auth/weak-password" == m ? alert("The password is too weak.") : null == l, console.log(l)
-        }) : alert("good job you failed") : alert("you messed something up")
-    })
-}
+        function handleSignUp() {
+            var g = document.getElementById("email").value.toLowerCase(),
+                h = document.getElementById("username").value.toLowerCase(),
+                i = document.getElementById("pin").value;
+            let j = firebase.database().ref("/users/names/");
+            j.once("value", function(k) {
+                k.hasChild(h) ? alert("user already exists") : document.getElementById("pin").value == document.getElementById("pen").value ? g.includes("@") && g.includes(".") ? firebase.auth().createUserWithEmailAndPassword(g, i).catch(function(l) {
+                    var m = l.code,
+                        n = l.message;
+                    "auth/weak-password" == m ? alert("The password is too weak.") : null == l, console.log(l)
+                }) : alert("good job you failed") : alert("you messed something up")
+            })
+        }
 
-function handleSignUp2() {
-    handleSignUp(), handleSignUp(), handleSignUp(), handleSignUp(), handleSignUp()
-}
+        function handleSignUp2() {
+            handleSignUp(), handleSignUp(), handleSignUp(), handleSignUp(), handleSignUp()
+        }
 
-function set() {
-    var g = document.getElementById("email").value.toLowerCase(),
-        h = document.getElementById("username").value.toLowerCase(),
-        i = document.getElementById("pin").value;
-    let j = firebase.database().ref("users/" + firebase.auth().currentUser.uid),
-        k = firebase.database().ref("users/c/usernameToEmail/" + h),
-        l = firebase.database().ref("users/c/emailToUsername/" + g.replace(".", ",")),
-        m = firebase.database().ref("users/c/emailToUid/" + g.replace(".", ",")),
-        n = firebase.database().ref("users/c/uidToEmail/" + firebase.auth().currentUser.uid),
-        o = firebase.database().ref("users/names/" + h);
-        p = firebase.database().ref("tokens/users/" + firebase.auth().currentUser.uid);
-    j.set({
-        username: h,
-        uid: firebase.auth().currentUser.uid,
-        email: g
-    }), k.set({
-        email: g.replace(".", ",")
-    }), l.set({
-        username: h
-    }), m.set({
-        uid: firebase.auth().currentUser.uid
-    }), n.set({
-        email: g.replace(".", ",")
-    }), o.set({
-        username: h,
-        balance: 10
-    }), p.set(0),
-      setTimeout(function() {
-        window.location.href = "newlayout.html"
-    }, 3000);
-}
-firebase.auth().onAuthStateChanged(function(g) {
-    var h = document.getElementById("email").value.toLowerCase(),
-        i = document.getElementById("username").value.toLowerCase(),
-        j = document.getElementById("pin").value;
-    g && set()
-});
-	</script>
-	</body>
+        function set() {
+            var g = document.getElementById("email").value.toLowerCase(),
+                h = document.getElementById("username").value.toLowerCase(),
+                i = document.getElementById("pin").value;
+            let j = firebase.database().ref("users/" + firebase.auth().currentUser.uid),
+                k = firebase.database().ref("users/c/usernameToEmail/" + h),
+                l = firebase.database().ref("users/c/emailToUsername/" + g.replace(".", ",")),
+                m = firebase.database().ref("users/c/emailToUid/" + g.replace(".", ",")),
+                n = firebase.database().ref("users/c/uidToEmail/" + firebase.auth().currentUser.uid),
+                o = firebase.database().ref("users/names/" + h);
+            p = firebase.database().ref("tokens/users/" + firebase.auth().currentUser.uid);
+            j.set({
+                    username: h,
+                    uid: firebase.auth().currentUser.uid,
+                    email: g
+                }), k.set({
+                    email: g.replace(".", ",")
+                }), l.set({
+                    username: h
+                }), m.set({
+                    uid: firebase.auth().currentUser.uid
+                }), n.set({
+                    email: g.replace(".", ",")
+                }), o.set({
+                    username: h,
+                    balance: 10
+                }), p.set(0),
+                setTimeout(function() {
+                    window.location.href = "newlayout.html"
+                }, 3000);
+        }
+        firebase.auth().onAuthStateChanged(function(g) {
+            var h = document.getElementById("email").value.toLowerCase(),
+                i = document.getElementById("username").value.toLowerCase(),
+                j = document.getElementById("pin").value;
+            g && set()
+        });
+    </script>
+</body>
+
 </html>
