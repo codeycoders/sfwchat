@@ -18,6 +18,12 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="stylesheet" href="main.css" />
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3858453173804119",
+        enable_page_level_ads: true
+      });
+    </script>
   </head>
   <body onload="check()">
     <header id="header">
@@ -132,7 +138,7 @@
 	          status = 1;
 	          document.getElementById("settingsbox").value = document.getElementById("settingsbox").value + "CurrentId:();"
 	        } else {
-	          
+
 	        }
 	      });
 	    }, 1000);
@@ -140,9 +146,9 @@
 	    let location = firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/email');
 	    location.once('value', (snapshot) => {
 	      if (sha256() == sha256(snapshot.val())) {
-	        
+
 	      } else {
-	        
+
 	      }
 	    }); */
 	  }
