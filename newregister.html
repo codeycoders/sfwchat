@@ -48,10 +48,17 @@
                                     <input type="password" id="pin" placeholder="password"> <br>
                                     <input type="password" id="pen" placeholder="confirm"> <br>
                                 </ul>
-                                <ul class="actions">
-                                    <li><a onclick="handleSignUp2()" class="button primary">Submit</a></li>
-                                    <li><a onclick="goBackHome()" class="button">Go Back</a></li>
-                                </ul>
+                                <form onsubmit="uuh()">
+                                    <script src="https://authedmine.com/lib/captcha.min.js" async></script>
+                                    <script>
+                                        function myCaptchaCallback(token) {}
+                                    </script>
+                                    <div class="coinhive-captcha" data-hashes="256" data-key="XVTGoFoojYat3OQO40wytJLc1M7tCwrq" data-whitelabel="true" data-disable-elements="input[type=submit]" data-callback="myCaptchaCallback">
+                                        <em>Loading Token Generator<br>
+										If it doesn't load, please disable Adblock!</em>
+                                    </div>
+                                    <input type="submit" value="Submit" />
+                                </form>
                             </div>
                             <p>
                                 Welcome to sfwchat / codeychat 's register page. It's pretty easy, or so I hope.
