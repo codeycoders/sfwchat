@@ -196,282 +196,197 @@ data-key="XVTGoFoojYat3OQO40wytJLc1M7tCwrq">
     function enterpressalert(a){var c=a.keyCode?a.keyCode:a.which;13==c&&(scanner(),document.getElementById("send").value="")}
   </script> -->
 <script>
-var config = {
-    apiKey: "AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",
-    authDomain: "codeychat-20d66.firebaseapp.com",
-    databaseURL: "https://codeychat-20d66.firebaseio.com",
-    projectId: "codeychat-20d66",
-    storageBucket: "codeychat-20d66.appspot.com",
-    messagingSenderId: "531033258195"
-};
-firebase.initializeApp(config);
+var config={apiKey:"AIzaSyAHhBe4eMBZ_M39UWMW30b5zzJ1slVs0jw",authDomain:"codeychat-20d66.firebaseapp.com",databaseURL:"https://codeychat-20d66.firebaseio.com",projectId:"codeychat-20d66",storageBucket:"codeychat-20d66.appspot.com",messagingSenderId:"531033258195"};firebase.initializeApp(config);
 var database = firebase.database();
 var ref = firebase.database().ref();
-
-function checkEnter() {}
-
+function checkEnter(){}
 function print(msg) {
-    log = log + msg + "\n";
-    r();
+  log = log + msg + "\n";
+  r();
 }
-
 function clear() {
-    log = "";
-    r();
+  log = "";
+  r();
 }
-
 function dump() {
-    var message = "message";
-    var yat = 0;
-    let hsRs = firebase.database().ref('/chat/publicDump/count');
+  var message = "message";
+  var yat = 0;
+  let hsRs = firebase.database().ref('/chat/publicDump/count');
     hsRs.once('value', (snapshot) => {
-        var current = snapshot.val();
-        yat = snapshot.val();
-        current = current.toString();
+      var current = snapshot.val();
+      yat = snapshot.val();
+      current = current.toString();
+      console.log(snapshot.val());
+      message = message + current;
+      var reader = 20;
+      yat = yat - 19;
+      while (reader > 0) {
+      console.log("yat");
+      let newListen = firebase.database().ref('/chat/publicDump/dumpedMessages/' + 'message' + yat);
+      console.log("message" + yat);
+      newListen.once('value', (snapshot) => {
         console.log(snapshot.val());
-        message = message + current;
-        var reader = 20;
-        yat = yat - 19;
-        while (reader > 0) {
-            console.log("yat");
-            let newListen = firebase.database().ref('/chat/publicDump/dumpedMessages/' + 'message' + yat);
-            console.log("message" + yat);
-            newListen.once('value', (snapshot) => {
-                console.log(snapshot.val());
-                log = log + snapshot.val() + "\n";
-                r();
-            });
-            yat++;
-            reader--;
-        }
+        log = log + snapshot.val() + "\n";
+        r();
     });
-    document.getElementById("msgs").scrollTop = document.getElementById("msgs").scrollHeight;
+    yat++;
+    reader--;
+  }
+  });
+  document.getElementById("msgs").scrollTop = document.getElementById("msgs").scrollHeight;
 }
-
 function logWithEmail() {
-    // Sign with EMAIL
-    console.log("Email started");
+// Sign with EMAIL
+  console.log("Email started");
     firebase.auth().signInWithEmailAndPassword(document.getElementById("userID").value, document.getElementById("pin").value).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-    });
-    let hsR = firebase.database().ref('/users/c/emailToUsername/' + document.getElementById("userID").value.replace(".", ",") + '/username');
-    hsR.once('value', (snapshot) => {
-        thingy = snapshot.val();
-        uuid = thingy;
-        document.cookie = "username=" + uuid + "; path=/";
-        console.log(document.cookie + "cookie");
-    });
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+  let hsR = firebase.database().ref('/users/c/emailToUsername/' + document.getElementById("userID").value.replace(".", ",") + '/username');
+  hsR.once('value', (snapshot) => {
+    thingy = snapshot.val();
+    uuid = thingy;
+    document.cookie = "username=" + uuid + "; path=/";
+    console.log(document.cookie + "cookie");
+  });
 }
-
 function logWithUsername() {
-    console.log("Username started");
-    let homeScoreRefe = firebase.database().ref('/users/c/usernameToEmail/' + document.getElementById("userID").value.toLowerCase() + '/email');
-    homeScoreRefe.once('value', (snapshot) => {
-        thingy = snapshot.val();
-        document.getElementById("userID").value = thingy.replace(',', '.');
+console.log("Username started");
+  let homeScoreRefe = firebase.database().ref('/users/c/usernameToEmail/' + document.getElementById("userID").value.toLowerCase() + '/email');
+  homeScoreRefe.once('value', (snapshot) => {
+    thingy = snapshot.val();
+    document.getElementById("userID").value = thingy.replace(',', '.');
+  });
+  logWithEmail();
+}
+function uuh(){uhh();uhh();}
+function uhh(){if(document.getElementById("userID").value.includes("@")){logWithEmail();}else{logWithUsername();}}
+firebase.auth().onAuthStateChanged(function(a){a&&(authed=!0,auth(),alert('logged in'))});
+var sha256=function r(o){
+  function f(r,o){return r>>>o|r<<32-o}for(var t,n,a=Math.pow,c=a(2,32),e="length",i="",h=[],u=8*o[e],v=r.h=r.h||[],l=r.k=r.k||[],s=l[e],g={},k=2;s<64;k++)if(!g[k]){for(t=0;t<313;t+=k)g[t]=k;v[s]=a(k,.5)*c|0,l[s++]=a(k,1/3)*c|0}for(o+="";o[e]%64-56;)o+="\0";for(t=0;t<o[e];t++){if((n=o.charCodeAt(t))>>8)return;h[t>>2]|=n<<(3-t)%4*8}for(h[h[e]]=u/c|0,h[h[e]]=u,n=0;n<h[e];){var d=h.slice(n,n+=16),p=v;for(v=v.slice(0,8),t=0;t<64;t++){var w=d[t-15],A=d[t-2],C=v[0],M=v[4],S=v[7]+(f(M,6)^f(M,11)^f(M,25))+(M&v[5]^~M&v[6])+l[t]+(d[t]=t<16?d[t]:d[t-16]+(f(w,7)^f(w,18)^w>>>3)+d[t-7]+(f(A,17)^f(A,19)^A>>>10)|0);(v=[S+((f(C,2)^f(C,13)^f(C,22))+(C&v[1]^C&v[2]^v[1]&v[2]))|0].concat(v))[4]=v[4]+S|0}for(t=0;t<8;t++)v[t]=v[t]+p[t]|0}for(t=0;t<8;t++)for(n=3;n+1;n--){var b=v[t]>>8*n&255;i+=(b<16?0:"")+b.toString(16)}return i};
+var log = "", current, next, thingy, uuid = "", authed = false, filter = true;
+function scanner(){
+  if (filter) {
+    var e=document.getElementById("send").value;(e=e.toLowerCase()).includes("fu")||e.includes("ass")||e.includes("bitch")||e.includes("nigger")||e.includes("fuq")||e.includes("cunt")||e.includes("cock")||e.includes("fag")||e.includes("dick")||e.includes("porn")||e.includes("pussy")||e.includes("slut")?alert("Profane language is not permitted!"):"\n"!==e||" "!=e?checkcmds():alert("You can't submit an empty message!")
+  } else {
+    checkcmds();
+  }
+}
+function submit() {
+  var mode = 0;
+  if (mode == 0) {
+    send();
+  } else if (mode == 1) {
+    transferMoney(document.getElementById("send").value.replace("\n", ""));
+  } else if (mode == 2) {
+    
+  }
+  var UserInput = document.getElementById("send").value;
+  UserInput = UserInput.replace(/(?:\r\n|\r|\n)/g, '');
+  UserInput = UserInput.replace(/(?:\r\n|\r|\n)/g, null);
+  UserInput = UserInput.replace("\n", null);
+  UserInput = UserInput.replace("", null);
+}
+function send() {
+  if (authed) {
+    var mst = ": <" + uuid + "> " + document.getElementById("send").value;
+    mst = mst.replace("\n", "");
+    writeUserData(mst);
+    r();
+    let hsRse = firebase.database().ref('/chat/publicDump/count');
+    hsRse.once('value', (snapshot) => {
+      firebase.database().ref('/chat/publicDump/count').set(snapshot.val() + 1);
     });
-    logWithEmail();
+  } else {
+    alert("log in to send messages!");
+  }
+  
+  document.getElementById("send").value = "";
+  
 }
-
-function uuh() {
-    uhh();
-    uhh();
+function checkcmds() {
+  if (document.getElementById("send").value.toLowerCase() == "!help") {
+    log = log + "!clear : clear the chat\n" +
+                "!filter : toggle filter\n" +
+                "more coming soon (maybe)\n";
+  } else if (document.getElementById("send").value.toLowerCase() == "!clear") {
+    log = "chat cleared\n";
+  } else if (document.getElementById("send").value.toLowerCase() == "!filter") {
+    filter = !filter;
+    log = log + "Filter: " + filter + "\n";
+  } else {
+    submit();
+  } r();
+  // document.getElementById("send").value = "";
 }
-
-function uhh() {
-    if (document.getElementById("userID").value.includes("@")) {
-        logWithEmail();
-    } else {
-        logWithUsername();
-    }
-}
-firebase.auth().onAuthStateChanged(function(a) {
-    a && (authed = !0, auth(), alert('logged in'))
+var stringy = "";
+let ahhScoreRef = firebase.database().ref('/chat/message/msg');
+ahhScoreRef.on('value', (snapshot) => {
+    console.log(snapshot.val());
+    stringy = snapshot.val();
+    document.getElementById("msgs").scrollTop = document.getElementById("msgs").scrollHeight;
+    r();
 });
-var sha256 = function r(o) { ===
-        === =
-        firebase.auth().onAuthStateChanged(function(a) {
-            a && (authed = !0, auth(), alert('logged in'))
-        }); // check when auth state changes
-        var sha256 = function r(o) { // SHA256 thing I found somewhere on the internet
-            >>>
-            >>> > e80ca047935596ae16946ff31af0f5a60c4600a2
-
-            function f(r, o) {
-                return r >>> o | r << 32 - o
-            }
-            for (var t, n, a = Math.pow, c = a(2, 32), e = "length", i = "", h = [], u = 8 * o[e], v = r.h = r.h || [], l = r.k = r.k || [], s = l[e], g = {}, k = 2; s < 64; k++)
-                if (!g[k]) {
-                    for (t = 0; t < 313; t += k) g[t] = k;
-                    v[s] = a(k, .5) * c | 0, l[s++] = a(k, 1 / 3) * c | 0
-                }
-            for (o += ""; o[e] % 64 - 56;) o += "\0";
-            for (t = 0; t < o[e]; t++) {
-                if ((n = o.charCodeAt(t)) >> 8) return;
-                h[t >> 2] |= n << (3 - t) % 4 * 8
-            }
-            for (h[h[e]] = u / c | 0, h[h[e]] = u, n = 0; n < h[e];) {
-                var d = h.slice(n, n += 16),
-                    p = v;
-                for (v = v.slice(0, 8), t = 0; t < 64; t++) {
-                    var w = d[t - 15],
-                        A = d[t - 2],
-                        C = v[0],
-                        M = v[4],
-                        S = v[7] + (f(M, 6) ^ f(M, 11) ^ f(M, 25)) + (M & v[5] ^ ~M & v[6]) + l[t] + (d[t] = t < 16 ? d[t] : d[t - 16] + (f(w, 7) ^ f(w, 18) ^ w >>> 3) + d[t - 7] + (f(A, 17) ^ f(A, 19) ^ A >>> 10) | 0);
-                    (v = [S + ((f(C, 2) ^ f(C, 13) ^ f(C, 22)) + (C & v[1] ^ C & v[2] ^ v[1] & v[2])) | 0].concat(v))[4] = v[4] + S | 0
-                }
-                for (t = 0; t < 8; t++) v[t] = v[t] + p[t] | 0
-            }
-            for (t = 0; t < 8; t++)
-                for (n = 3; n + 1; n--) {
-                    var b = v[t] >> 8 * n & 255;
-                    i += (b < 16 ? 0 : "") + b.toString(16)
-                }
-            return i
-        };
-        var log = "",
-            current, next, thingy, uuid = "",
-            authed = false,
-            filter = true;
-
-        function scanner() {
-            if (filter) {
-                var e = document.getElementById("send").value;
-                (e = e.toLowerCase()).includes("fu") || e.includes("ass") || e.includes("bitch") || e.includes("nigger") || e.includes("fuq") || e.includes("cunt") || e.includes("cock") || e.includes("fag") || e.includes("dick") || e.includes("porn") || e.includes("pussy") || e.includes("slut") ? alert("Profane language is not permitted!") : "\n" !== e || " " != e ? checkcmds() : alert("You can't submit an empty message!")
-            } else {
-                checkcmds();
-            }
-        }
-
-        function submit() {
-            var mode = 0;
-            if (mode == 0) {
-                send();
-            } else if (mode == 1) {
-                transferMoney(document.getElementById("send").value.replace("\n", ""));
-            } else if (mode == 2) {
-
-            }
-            var UserInput = document.getElementById("send").value;
-            UserInput = UserInput.replace(/(?:\r\n|\r|\n)/g, '');
-            UserInput = UserInput.replace(/(?:\r\n|\r|\n)/g, null);
-            UserInput = UserInput.replace("\n", null);
-            UserInput = UserInput.replace("", null);
-        }
-
-        function send() {
-            if (authed) {
-                var mst = ": <" + uuid + "> " + document.getElementById("send").value;
-                mst = mst.replace("\n", "");
-                writeUserData(mst);
-                r();
-                let hsRse = firebase.database().ref('/chat/publicDump/count');
-                hsRse.once('value', (snapshot) => {
-                    firebase.database().ref('/chat/publicDump/count').set(snapshot.val() + 1);
-                });
-            } else {
-                alert("log in to send messages!");
-            }
-
-            document.getElementById("send").value = "";
-
-        }
-
-        function checkcmds() {
-            if (document.getElementById("send").value.toLowerCase() == "!help") {
-                log = log + "!clear : clear the chat\n" +
-                    "!filter : toggle filter\n" +
-                    "more coming soon (maybe)\n";
-            } else if (document.getElementById("send").value.toLowerCase() == "!clear") {
-                log = "chat cleared\n";
-            } else if (document.getElementById("send").value.toLowerCase() == "!filter") {
-                filter = !filter;
-                log = log + "Filter: " + filter + "\n";
-            } else {
-                submit();
-            }
-            r();
-            // document.getElementById("send").value = "";
-        }
-        var stringy = "";
-        let ahhScoreRef = firebase.database().ref('/chat/message/msg');
-        ahhScoreRef.on('value', (snapshot) => {
-            console.log(snapshot.val());
-            stringy = snapshot.val();
-            document.getElementById("msgs").scrollTop = document.getElementById("msgs").scrollHeight;
-            r();
-        });
-
-        function r() {
-            document.getElementById("msgs").value = log;
-            if (current != stringy) {
-                log = log + stringy + "\n";
-                document.getElementById("msgs").value = log;
-                stringy = "";
-            }
-            current = stringy;
-        }
-
-        function alerts() {
-            window.alert("In order to use this website, you must agree to the following terms and conditions..." +
-                "Anything you say on this chat application is not private and will not be treated as such." +
-                "In accordance to some AUP you aren't allowed to say anything not safe for work." +
-                "That includes stuff like swearing and whatever. So yeah, don't do that." +
-                "There is an automatic chat filter but I won't be able to do everything." +
-                "In the event that this is 'compromised' you will be held accountable for" +
-                "LITERALLY everything you've said and done. Enjoy :)");
-        }
-
-        function initLog() {
-            setTimeout(function() {
-                console.log("THIS IS");
-                let getUser = firebase.database().ref('/users/c/uidToEmail/' + firebase.auth().currentUser.uid + '/email');
-                getUser.once('value', (snapshot) => {
-                    console.log(snapshot.val());
-                    let convertEmailToUsername = firebase.database().ref('users/c/emailToUsername/' + snapshot.val() + '/username');
-                    convertEmailToUsername.once('value', (snapshot) => {
-                        uuid = snapshot.val();
-                        var mst2 = ": " + snapshot.val() + " joined the channel."
-                        writeUserData(mst2);
-                    });
-                });
-                var test = 1;
-                if (test != 1) {
-                    alerts();
-                }
-                r();
-                dump();
-                document.getElementById("msgs").scrollTop = document.getElementById("msgs").scrollHeight;
-            }, 2000);
-        }
-
-        function writeUserData(msg, namee, ide) {
-            var datetimeNow = new Date();
-            msg = datetimeNow.getHours().toString() + ":" + datetimeNow.getMinutes().toString() + ":" + datetimeNow.getSeconds().toString() + msg;
-            firebase.database().ref('chat/message').set({
-                msg
-            });
-            let hsRs = firebase.database().ref('/chat/publicDump/count');
-            hsRs.once('value', (snapshot) => {
-                var n1 = snapshot.val();
-                n1++;
-                firebase.database().ref('/chat/publicDump/dumpedMessages/message' + n1).set(msg);
-            });
-        }
-
-        function auth(idefe) {
-            authed = true;
-            alert("logged in");
-            document.getElementById("userID").value = "";
-            document.getElementById("pin").value = "";
-        }
-
-        function enterpressalert(a) {
-            var c = a.keyCode ? a.keyCode : a.which;
-            13 == c && (scanner(), document.getElementById("send").value = "")
-        }
+function r() {
+  document.getElementById("msgs").value = log;
+  if (current != stringy) {
+  log = log + stringy + "\n";
+  document.getElementById("msgs").value = log;
+  stringy = "";
+}
+  current = stringy;
+}
+function alerts() {
+  window.alert("In order to use this website, you must agree to the following terms and conditions..." +
+               "Anything you say on this chat application is not private and will not be treated as such." +
+               "In accordance to some AUP you aren't allowed to say anything not safe for work." +
+               "That includes stuff like swearing and whatever. So yeah, don't do that." +
+               "There is an automatic chat filter but I won't be able to do everything." +
+               "In the event that this is 'compromised' you will be held accountable for" +
+               "LITERALLY everything you've said and done. Enjoy :)");
+}
+function initLog() {
+  setTimeout(function(){
+    console.log("THIS IS");
+  let getUser = firebase.database().ref('/users/c/uidToEmail/' + firebase.auth().currentUser.uid + '/email');
+  getUser.once('value', (snapshot) => {
+   console.log(snapshot.val());
+   let convertEmailToUsername = firebase.database().ref('users/c/emailToUsername/' + snapshot.val() + '/username');
+   convertEmailToUsername.once('value', (snapshot) => {
+     uuid = snapshot.val();
+     var mst2 = ": " + snapshot.val() + " joined the channel."
+     writeUserData(mst2);
+   });
+  });
+  var test = 1;
+  if (test != 1) {
+    alerts();
+  }
+  r();
+  dump();
+  document.getElementById("msgs").scrollTop = document.getElementById("msgs").scrollHeight;
+  }, 2000);
+}
+function writeUserData(msg, namee, ide) {
+  var datetimeNow = new Date();
+  msg = datetimeNow.getHours().toString() + ":" + datetimeNow.getMinutes().toString() + ":" + datetimeNow.getSeconds().toString() + msg;
+  firebase.database().ref('chat/message').set({
+    msg
+  });
+  let hsRs = firebase.database().ref('/chat/publicDump/count');
+  hsRs.once('value', (snapshot) => {
+    var n1 = snapshot.val();
+    n1++;
+    firebase.database().ref('/chat/publicDump/dumpedMessages/message' + n1).set(msg);
+  });
+}
+function auth(idefe) {
+  authed = true;
+  alert("logged in");
+  document.getElementById("userID").value = "";
+  document.getElementById("pin").value = "";
+}
+function enterpressalert(a){var c=a.keyCode?a.keyCode:a.which;13==c&&(scanner(),document.getElementById("send").value="")}
 </script>
   </body>
 </html>
