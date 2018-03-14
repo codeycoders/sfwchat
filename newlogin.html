@@ -20,17 +20,23 @@
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="main.css" />
     <script>
-        (adsbygoogle = window.adsbygoogle || [])
-        .push({
-            google_ad_client: "ca-pub-3858453173804119",
-            enable_page_level_ads: true
-        });
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3858453173804119",
+        enable_page_level_ads: true
+      });
     </script>
 </head>
 
 <body class="is-preload">
-    <header id="header"> <a class="logo" href="homepage.html">sfwchat</a>
-        <nav> <a href="privacy.html">Privacy</a> <a href="about.html">About</a> <a href="contact.html">Contact</a> <a href="homepage.html">Home</a> <a href="signout.html">Sign Out</a> </nav>
+    <header id="header">
+        <a class="logo" href="homepage.html">sfwchat</a>
+        <nav>
+            <a href="privacy.html">Privacy</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="homepage.html">Home</a>
+            <a href="signout.html">Sign Out</a>
+        </nav>
     </header>
     <div id="heading">
         <h1>sfwchat</h1>
@@ -42,41 +48,28 @@
                     <div>
                         <div class="row">
                             <div class="col-6 col-12-small">
-                                <ul> <input type="text" id="userID" placeholder="username / email"> <br>
-                                    <input type="password" id="pin" placeholder="password">
-                                    <br> </ul>
+                                <ul>
+                                    <input type="text" id="userID" placeholder="username / email"> <br>
+                                    <input type="password" id="pin" placeholder="password"> <br>
+                                </ul>
                                 <ul class="actions">
-                                    <li> <a onclick="uuh()" class="button primary">Submit</a> </li>
-                                    <li>
-                                        <a onclick="goBackHome()" class="button">Go
-                                                                                                Back</a> </li>
+                                    <li><a onclick="uuh()" class="button primary">Submit</a></li>
+                                    <li><a onclick="goBackHome()" class="button">Go Back</a></li>
                                 </ul>
                             </div>
-                            <p> Here liveth the login page. Enter your
-                                <b>username</b> or <b>email</b> and you'll be on your way! </p>
+                            <p>
+                                Here liveth the login page. Enter your <b>username</b> or <b>email</b> and you'll be on your way!
+                            </p>
                             <script type="text/javascript">
-                                atOptions
-                                    = {
-                                        'key': '30f59791e65e8807b021c3f23c4503a0',
-                                        'format': 'iframe',
-                                        'height': 90,
-                                        'width': 728,
-                                        'params': {}
-                                    };
-                                document
-                                    .write(
-                                        ' <
-                                        scr ' + '
-                                        ipt type =
-                                        "text/javascript"
-                                        src =
-                                        "http' + (location.protocol === 'https:' ? 's' : '') + '://www.bnserving.com/30f59791e65e8807b021c3f23c4503a0/invoke.js" >
-                                        <
-                                        /scr
-                                        ' + '
-                                        ipt >
-                                        ');
-                            </script>
+                            atOptions = {
+                                'key': '30f59791e65e8807b021c3f23c4503a0',
+                                'format': 'iframe',
+                                'height': 90,
+                                'width': 728,
+                                'params': {}
+                            };
+                            document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.bnserving.com/30f59791e65e8807b021c3f23c4503a0/invoke.js"></scr' + 'ipt>');
+                        </script>
                         </div>
                     </div>
                 </div>
@@ -85,8 +78,7 @@
     </section>
     <script>
         function goBackHome() {
-            window.location.href =
-                "homepage.html";
+            window.location.href = "homepage.html";
         }
     </script>
     <script src="firebase.js"></script>
@@ -104,70 +96,34 @@
             ref = firebase.database().ref();
 
         function logWithEmail() {
-            console.log("Email started"),
-                firebase.auth().signInWithEmailAndPassword(
-                    document.getElementById(
-                        "userID").value,
-                    document.getElementById(
-                        "pin").value).catch(
-                    function (b) {
-                        var c = b.code,
-                            d = b.message
-                    });
-            let a = firebase.database()
-                .ref(
-                    "/users/c/emailToUsername/" +
-                    document.getElementById(
-                        "userID").value
-                    .replace(".", ",") +
-                    "/username");
+            console.log("Email started"), firebase.auth().signInWithEmailAndPassword(document.getElementById("userID").value, document.getElementById("pin").value).catch(function(b) {
+                var c = b.code,
+                    d = b.message
+            });
+            let a = firebase.database().ref("/users/c/emailToUsername/" + document.getElementById("userID").value.replace(".", ",") + "/username");
             a.once("value", b => {
-                thingy = b.val(),
-                    uuid =
-                    thingy
+                thingy = b.val(), uuid = thingy
             })
         }
 
         function logWithUsername() {
-            console.log(
-                "Username started");
-            let a = firebase.database()
-                .ref(
-                    "/users/c/usernameToEmail/" +
-                    document.getElementById(
-                        "userID").value
-                    .toLowerCase() +
-                    "/email");
+            console.log("Username started");
+            let a = firebase.database().ref("/users/c/usernameToEmail/" + document.getElementById("userID").value.toLowerCase() + "/email");
             a.once("value", b => {
-                    thingy = b.val(),
-                        document.getElementById(
-                            "userID"
-                        ).value =
-                        thingy.replace(
-                            ",",
-                            ".")
-                }),
-                logWithEmail()
+                thingy = b.val(), document.getElementById("userID").value = thingy.replace(",", ".")
+            }), logWithEmail()
         }
 
         function uuh() {
-            uhh(),
-                uhh()
+            uhh(), uhh()
         }
 
         function uhh() {
-            document.getElementById(
-                    "userID").value.includes(
-                    "@") ? logWithEmail() :
-                logWithUsername()
+            document.getElementById("userID").value.includes("@") ? logWithEmail() : logWithUsername()
         }
-        firebase.auth().onAuthStateChanged(
-            function (a) {
-                a && (window.location
-                    .href =
-                    "newlayout.html"
-                )
-            });
+        firebase.auth().onAuthStateChanged(function(a) {
+            a && (window.location.href = "newlayout.html")
+        });
     </script>
 </body>
 
